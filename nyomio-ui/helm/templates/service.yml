@@ -1,0 +1,13 @@
+{{ if eq .Values.global.frontendDevMode false }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: nyomio-app-nyomio-ui-service
+spec:
+  selector:
+    app: nyomio-app-nyomio-ui
+  ports:
+    - name: http
+      targetPort: 80
+      port: 80
+{{ end }}

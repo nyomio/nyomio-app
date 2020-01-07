@@ -1,0 +1,23 @@
+{{ if eq .Values.global.frontendDevMode false }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nyomio-app-nyomio-ui
+spec:
+  selector:
+    matchLabels:
+      app: nyomio-app-nyomio-ui
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: nyomio-app-nyomio-ui
+    spec:
+      containers:
+        - name: "nyomio-app-nyomio-ui"
+          image: "nyomio-app-nyomio-ui:0.1.0"
+          imagePullPolicy: Never
+          ports:
+            - name: http
+              containerPort: 80
+{{ end }}

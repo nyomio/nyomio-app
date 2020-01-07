@@ -1,0 +1,14 @@
+{{ if eq .Values.global.frontendDevMode false }}
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: rediredt-404-to-index-html
+spec:
+  errors:
+    status:
+      - 404
+    query: /
+    service:
+      name: nyomio-app-nyomio-ui-service
+      port: 80
+{{ end }}

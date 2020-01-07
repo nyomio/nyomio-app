@@ -1,0 +1,34 @@
+<td-layout #layout>
+  <td-navigation-drawer flex sidenavTitle="Nyom App" [name]="(user$ | async)?.userName"
+                        [email]="(user$ | async)?.email">
+    <mat-nav-list>
+      <!--<a mat-list-item>-->
+        <!--<mat-icon>home</mat-icon>-->
+        <!--Home</a>-->
+      <div *ngFor="let entry of menuEntries">
+        <a mat-list-item (click)="layout.close()" [routerLink]="entry.route" queryParamsHandling="preserve">
+          <mat-icon>{{entry.icon}}</mat-icon>
+          {{entry.title}}
+        </a>
+      </div>
+    </mat-nav-list>
+    <div td-navigation-drawer-menu>
+      <mat-nav-list>
+        <a mat-list-item
+           [href]="(auth$ |async).ssoLogoutUrl.replace('[base_url]', currentLocation())">
+          <mat-icon>exit_to_app</mat-icon>
+          Logout</a>
+      </mat-nav-list>
+    </div>
+  </td-navigation-drawer>
+  <td-layout-nav toolbarTitle="Nyom App" navigationRoute="/">
+    <button mat-icon-button td-menu-button tdLayoutToggle>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <router-outlet></router-outlet>
+  </td-layout-nav>
+</td-layout>
+<error-component [assignedQuery]="authQuery" [assignedService]="authService"></error-component>
+
+
+

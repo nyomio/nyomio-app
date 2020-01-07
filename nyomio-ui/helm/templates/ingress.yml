@@ -1,0 +1,20 @@
+{{ if eq .Values.global.frontendDevMode false }}
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nyomio-app-nyomio-ui-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`app.nyomio.local`)
+      kind: Rule
+      priority: 1
+      services:
+        - name: nyomio-app-nyomio-ui-service
+          port: 80
+      middlewares:
+        - name: rediredt-404-to-index-html
+  tls:
+    secretName: certsecret
+{{ end }}

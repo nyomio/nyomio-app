@@ -1,0 +1,12 @@
+dependencies:
+- name: nyomio-framework
+  repository: file://../../../nyomio-framework/ci/helm
+  version: 0.0.1
+- name: nyomio-app-core-microservice
+  repository: file://../../core-microservice/helm
+  version: 0.0.1
+- name: nyomio-app-nyomio-ui
+  repository: file://../../nyomio-ui/helm
+  version: 0.0.1
+digest: sha256:6f90e7ace3ed29628af6082c8565bb2f7c5c1750e12c7f7740fb28494c9319e9
+generated: "2020-01-07T11:00:40.623396922+01:00"

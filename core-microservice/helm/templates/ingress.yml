@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: core-ingress
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`app.nyomio.local`) && PathPrefix(`/api/v1/core/`)
+      kind: Rule
+      priority: 2
+      services:
+        - name: nyomio-app-core-microservice-service
+          port: 8080
+  tls:
+    secretName: certsecret
