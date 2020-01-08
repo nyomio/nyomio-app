@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 cd "$(dirname "$0")" || exit
 
+paramValues=""
+if [[ -a values_override.yml ]]
+then
+  paramValues="-f values_override.yml"
+fi
+
+
 #helm uninstall dev
 helm dependency update helm
-helm upgrade --install nyomio-app helm --set global.coreMicroserviceEnabled=false,global.clusterType=minikube,global.devVersion=1
+helm upgrade --install nyomio-app helm ${paramValues}

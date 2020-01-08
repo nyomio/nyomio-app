@@ -1,8 +1,17 @@
 #!/usr/bin/env bash
 cd "$(dirname "$0")" || exit
+
 # escape sequence to change font style to italic (i) and normal (n)
 i=$(tput bold)
 n=$(tput sgr0)
+
+currentK8sContext=$(kubectl config current-context)
+
+case "$currentK8sContext" in
+  minikube)
+    eval $(minikube docker-env)
+    ;;
+esac
 
 printf "${i}# Building core-microservice\n"
 cd ../core-microservice
