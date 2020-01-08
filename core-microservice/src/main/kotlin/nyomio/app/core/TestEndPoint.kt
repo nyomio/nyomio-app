@@ -12,6 +12,6 @@ class TestEndPoint {
     @Get("/hello")
     @Secured(SecurityRule.IS_ANONYMOUS)
     fun hello(): String {
-        return "Hello"
+        return "Hello World 3"
     }
 }

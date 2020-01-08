@@ -1,4 +1,3 @@
-{{ if eq .Values.global.frontendDevMode false }}
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
@@ -11,4 +10,3 @@ spec:
     service:
       name: nyomio-app-nyomio-ui-service
       port: 80
-{{ end }}

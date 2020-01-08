@@ -8,5 +8,5 @@ dependencies:
 - name: nyomio-app-nyomio-ui
   repository: file://../../nyomio-ui/helm
   version: 0.0.1
-digest: sha256:6f90e7ace3ed29628af6082c8565bb2f7c5c1750e12c7f7740fb28494c9319e9
-generated: "2020-01-07T11:00:40.623396922+01:00"
+digest: sha256:d658b5de006c35c6e31473ad5b2a72b945fca98959bc89c05780fab9aec8ebb5
+generated: "2020-01-07T16:43:00.589686628+01:00"

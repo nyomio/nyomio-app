@@ -1,7 +1,8 @@
 global:
   # can be "docker", "minikube", "server"
   clusterType: docker
-  frontendDevMode: true
+  coreMicroserviceEnabled: true
+  nyomIoUiEnabled: true
 
 
 

@@ -8,6 +8,8 @@ dependencies:
   - name: nyomio-app-core-microservice
     version: 0.0.1
     repository: "file://../../core-microservice/helm"
+    condition: global.coreMicroserviceEnabled
   - name: nyomio-app-nyomio-ui
     version: 0.0.1
     repository: "file://../../nyomio-ui/helm"
+    condition: global.nyomIoUiEnabled

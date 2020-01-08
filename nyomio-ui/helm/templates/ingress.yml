@@ -1,4 +1,3 @@
-{{ if eq .Values.global.frontendDevMode false }}
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
@@ -17,4 +16,4 @@ spec:
         - name: rediredt-404-to-index-html
   tls:
     secretName: certsecret
-{{ end }}
+
