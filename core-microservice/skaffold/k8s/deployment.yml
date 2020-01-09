@@ -34,4 +34,4 @@ spec:
             - name: DB_USER
               value: postgres
             - name: DB_URL
-              value: jdbc:postgresql://postgresql.{{ .Release.Namespace }}.svc.cluster.local:5432/postgres
+              value: jdbc:postgresql://postgresql.default.svc.cluster.local:5432/postgres

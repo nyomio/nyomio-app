@@ -9,5 +9,6 @@ fi
 
 
 #helm uninstall dev
+kubectl delete configmaps --namespace=kube-system --ignore-not-found=true coredns
 helm dependency update helm
 helm upgrade --install nyomio-app helm ${paramValues}

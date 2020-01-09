@@ -39,6 +39,7 @@ export class AppComponent implements OnInit {
       newState.push({title : 'Organizations', route: [ROUTES.organizations], icon: 'dashboard'});
     }
     newState.push({title : 'Users', route: [ROUTES.users], icon: 'dashboard'});
+    newState.push({title : 'Devices', route: [ROUTES.devices], icon: 'dashboard'});
     this.menuEntries = newState;
   }
 
