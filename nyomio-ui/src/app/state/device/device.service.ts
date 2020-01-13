@@ -26,7 +26,7 @@ export class DeviceService extends EntityEditorService {
   }
 
   buildUpsertUrl(): string {
-    return `/api/v1/core/${this.authQuery.getValue().activeOrganization}/device`;
+    return `/api/v1/core/${this.authQuery.getValue().activeOrganization}/device/own`;
   }
 
   buildDeleteUrl(selectedId: number): string {

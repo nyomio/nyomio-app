@@ -18,3 +18,6 @@ db:
   user: ${DB_USER}
   password: ${DB_PASSWORD}
   create-tables: true
+jackson:
+  # include empty and null fields on serialization
+  serializationInclusion: ALWAYS

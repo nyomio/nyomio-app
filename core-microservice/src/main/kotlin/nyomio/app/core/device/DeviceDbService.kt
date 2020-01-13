@@ -1,6 +1,10 @@
 package nyomio.app.core.device
 
+import io.reactivex.Single
+import nyomio.admin.organization.OrganizationTable
 import nyomio.app.core.admin.OrganizationDbService
+import nyomio.app.core.devicemanager.getdeviceinfo.DeviceInfo
+import nyomio.app.core.devicemanager.getdeviceinfo.Organization
 import nyomio.commons.DbAccess
 import nyomio.commons.revisionedentity.BaseDbService
 import nyomio.commons.revisionedentity.EntityTable
@@ -49,11 +53,30 @@ constructor(private val dba: DbAccess,
 
         }.blockingGet()
     }
+
     fun listOwnAt(organizationName: String, timestamp: Long = System.currentTimeMillis(), filter: String? = null) =
             orgDbService.getByShortName(organizationName).flatMap { org ->
                 executeSelectQueryWith(atTimestamp(timestamp).filter(filter)
                         .andWhere { DeviceTable.organizationId.eq(org.id!!) })
             }
+
+    fun getDeviceInfo(timestamp: Long, nativeId: String): Single<DeviceInfo> {
+        return executeSelectQueryWithCustomMapping(
+                DeviceTable.join(
+                        OrganizationTable, JoinType.INNER, DeviceTable.organizationId,
+                        OrganizationTable.entityId)
+                        .selectAll()
+                        .atTimestamp(timestamp)
+                        .andWhere { DeviceTable.imei.eq(nativeId) }) {
+            DeviceInfo(
+                    nyomio.app.core.devicemanager.getdeviceinfo.Device(it[DeviceTable.entityId],
+                            it[DeviceTable.name], it[DeviceTable.imei]),
+                    Organization(it[OrganizationTable.entityId], it[OrganizationTable.shortName],
+                            ""))
+        }.map {
+            it.first()
+        }
+    }
 
     override fun table() = DeviceTable
 

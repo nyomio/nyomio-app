@@ -20,9 +20,9 @@ constructor(private val deviceDbService: DeviceRevisionedDbService)
             deviceDbService.listOwnAt(organizationName, timestamp ?: System.currentTimeMillis(), filter)
 
     @Put(uri = "/own")
-    fun addOwn(organization: String, device: Device) =
+    fun addOwn(organizationName: String, device: Device) =
             if (device.id == 0L)
-                deviceDbService.addOwn(organization, device)
+                deviceDbService.addOwn(organizationName, device)
             else {
                 deviceDbService.edit(device)
                 device.id
