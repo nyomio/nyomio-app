@@ -60,13 +60,13 @@ constructor(private val dba: DbAccess,
                         .andWhere { DeviceTable.organizationId.eq(org.id!!) })
             }
 
-    fun getDeviceInfo(timestamp: Long, nativeId: String): Single<DeviceInfo> {
+    fun getDeviceInfo(nativeId: String): Single<DeviceInfo> {
         return executeSelectQueryWithCustomMapping(
                 DeviceTable.join(
                         OrganizationTable, JoinType.INNER, DeviceTable.organizationId,
                         OrganizationTable.entityId)
                         .selectAll()
-                        .atTimestamp(timestamp)
+                        .atTimestamp(System.currentTimeMillis())
                         .andWhere { DeviceTable.imei.eq(nativeId) }) {
             DeviceInfo(
                     nyomio.app.core.devicemanager.getdeviceinfo.Device(it[DeviceTable.entityId],

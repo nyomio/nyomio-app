@@ -13,7 +13,11 @@ case "$currentK8sContext" in
     ;;
 esac
 
-printf "${i}# Building core-microservice\n"
+printf "${i}# Building core-microservice-api and publishing locally\n"
+cd ../core-microservice-api
+./gradlew clean build publishToMavenLocal
+
+printf "${i}#\n\n Building core-microservice\n"
 cd ../core-microservice
 ./gradlew clean build jibDockerBuild
 

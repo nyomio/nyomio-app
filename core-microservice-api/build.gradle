@@ -30,6 +30,7 @@ publishing {
 
 dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "io.micronaut:micronaut-http:$micronautVersion"
     implementation "org.jetbrains.exposed:exposed:0.17.3"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
     implementation "nyomio:commons:0.1"
